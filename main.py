@@ -11,3 +11,16 @@ def printer(i: str, j: int, k: str):
     print(l*j)
 
 printer(message,a, b)
+
+test = ["a", "b","c","d"]
+print (test[3])
+print (test[:])
+print (test[-2])
+print (test[:2])
+print (test[2:])
+
+for num in range(100, 0, -25):
+    print (num)
+
+print(1 > 0)
+print(1 < 0)
