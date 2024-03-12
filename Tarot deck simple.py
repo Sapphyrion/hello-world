@@ -1,7 +1,9 @@
+#imports necessary modules
 import random
 from loguru import logger
-tarot_deck = [
-    "0. The Fool", "I. The Magician", "II. The High Priestess", "III. The Empress", "IV. The Emperor",
+
+#defines the deck
+tarot_deck = ["0. The Fool", "I. The Magician", "II. The High Priestess", "III. The Empress", "IV. The Emperor",
     "V. The Hierophant", "VI. The Lovers", "VII. The Chariot", "VIII. Strength", "IX. The Hermit",
     "X. Wheel of Fortune", "XI. Justice", "XII. The Hanged Man", "XIII. Death", "XIV. Temperance",
     "XV. The Devil", "XVI. The Tower", "XVII. The Star", "XVIII. The Moon", "XIX. The Sun",
@@ -16,11 +18,14 @@ tarot_deck = [
     "Page of Swords", "Knight of Swords", "Queen of Swords", "King of Swords", "Ace of Pentacles",
     "Two of Pentacles", "Three of Pentacles", "Four of Pentacles", "Five of Pentacles", "Six of Pentacles",
     "Seven of Pentacles", "Eight of Pentacles", "Nine of Pentacles", "Ten of Pentacles", "Page of Pentacles",
-    "Knight of Pentacles", "Queen of Pentacles", "King of Pentacles"
-]
-pref = "Invalid"
+    "Knight of Pentacles", "Queen of Pentacles", "King of Pentacles"]
+
+#sets initial values
+pref = "Undefined"
 restart = True
-while pref == "Invalid":
+
+#loop until user inputs a valid preference
+while pref == "Undefined":
     pref = input("Would you like to enable upright/reversed variants? (Yes/No): ").lower()
     if pref == "yes":
         pref = True
@@ -30,13 +35,19 @@ while pref == "Invalid":
         break
     else:
         print("Invalid answer! Please reply with Yes or No.")
-        pref = "Invalid"
+        pref = "Undefined"
         continue
+
+#Loop for drawing cards
 while restart == True:
     number_of_cards = input("Input number of cards: ")
+
+    #error if the input isn't a number
     if not number_of_cards.isdigit():
         print(f"Error! {number_of_cards} is not a number!")
         continue
+
+    #if input is valid, prints drawn cards according to input and pref
     elif int(number_of_cards) in range(1,78):
         def draw_card(deck):
            return random.sample(deck, int(number_of_cards))
@@ -47,15 +58,16 @@ while restart == True:
         elif pref == False:
             for result in card:
                 print(result)
+
+    #handles other cases of invalid input
     elif int(number_of_cards) == 0:
         print("Error! You can't draw 0 cards!")
         continue
     elif int(number_of_cards) not in range(1,78):
         print("That's way too many cards! Please try again.")
         continue
-    elif number_of_cards not in range(1,78):
-        print("Error!", number_of_cards, " is not a number!")
-        continue
+
+    #asks if user wants to draw again
     cont = input("Would you like to draw again? (Yes/No): ").lower()
     if cont != "yes":
         print("See you soon!")
