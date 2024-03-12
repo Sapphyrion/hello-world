@@ -20,9 +20,10 @@ tarot_deck = ["0. The Fool", "I. The Magician", "II. The High Priestess", "III. 
     "Seven of Pentacles", "Eight of Pentacles", "Nine of Pentacles", "Ten of Pentacles", "Page of Pentacles",
     "Knight of Pentacles", "Queen of Pentacles", "King of Pentacles"]
 
-#sets initial values
+#sets initial values and welcomes the user
 pref = "Undefined"
 restart = True
+print("Welcome! Let's begin your card drawing.")
 
 #loop until user inputs a valid preference
 while pref == "Undefined":
@@ -70,6 +71,6 @@ while restart == True:
     #asks if user wants to draw again
     cont = input("Would you like to draw again? (Yes/No): ").lower()
     if cont != "yes":
-        print("See you soon!")
+        print("Okay! See you soon!")
         restart = False
         break
