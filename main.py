@@ -24,3 +24,4 @@ for num in range(100, 0, -25):
 
 print(1 > 0)
 print(1 < 0)
+
