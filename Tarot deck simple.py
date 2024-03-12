@@ -1,4 +1,5 @@
 import random
+from loguru import logger
 tarot_deck = [
     "0. The Fool", "I. The Magician", "II. The High Priestess", "III. The Empress", "IV. The Emperor",
     "V. The Hierophant", "VI. The Lovers", "VII. The Chariot", "VIII. Strength", "IX. The Hermit",
@@ -17,10 +18,46 @@ tarot_deck = [
     "Seven of Pentacles", "Eight of Pentacles", "Nine of Pentacles", "Ten of Pentacles", "Page of Pentacles",
     "Knight of Pentacles", "Queen of Pentacles", "King of Pentacles"
 ]
-number_of_cards = int(input("Input number of cards: "))
-def draw_card(deck):
-    return random.sample(deck, number_of_cards)
-card = draw_card(tarot_deck)
-up_or_r = random.choice(["(Upright)", "(Reversed)"])
-for result in card:
-    print(result, up_or_r)
+pref = "Invalid"
+restart = True
+while pref == "Invalid":
+    pref = input("Would you like to enable upright/reversed variants? (Yes/No): ").lower()
+    if pref == "yes":
+        pref = True
+        break
+    elif pref == "no":
+        pref = False
+        break
+    else:
+        print("Invalid answer! Please reply with Yes or No.")
+        pref = "Invalid"
+        continue
+while restart == True:
+    number_of_cards = input("Input number of cards: ")
+    if not number_of_cards.isdigit():
+        print(f"Error! {number_of_cards} is not a number!")
+        continue
+    elif int(number_of_cards) in range(1,78):
+        def draw_card(deck):
+           return random.sample(deck, int(number_of_cards))
+        card = draw_card(tarot_deck)
+        if pref == True:
+            for result in card:
+                print(result, random.choice(["(Upright)", "(Reversed)"]))
+        elif pref == False:
+            for result in card:
+                print(result)
+    elif int(number_of_cards) == 0:
+        print("Error! You can't draw 0 cards!")
+        continue
+    elif int(number_of_cards) not in range(1,78):
+        print("That's way too many cards! Please try again.")
+        continue
+    elif number_of_cards not in range(1,78):
+        print("Error!", number_of_cards, " is not a number!")
+        continue
+    cont = input("Would you like to draw again? (Yes/No): ").lower()
+    if cont != "yes":
+        print("See you soon!")
+        restart = False
+        break
