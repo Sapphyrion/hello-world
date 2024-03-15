@@ -3,7 +3,7 @@ parser = argparse.ArgumentParser(description='Calculadora')
 #Añado cada posible input.
 # nargs='+' indica que acepta uno o más valores
 #y los convierte en una lista
-parser.add_argument('--s', nargs='+', type=float, help='Suma números')
+parser.add_argument('-s', '--suma', nargs='+', type=float, help='Suma números')
 parser.add_argument('--r', nargs='+', type=float, help='Resta números')
 parser.add_argument('--m', nargs='+', type=float, help='Multiplica números')
 parser.add_argument('--d', nargs='+', type=float, help='Divide números')
